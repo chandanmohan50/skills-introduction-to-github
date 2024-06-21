@@ -19,14 +19,6 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.2
         with:
-          # Set always-auth in npmrc.
-          token: ${{ github.server_url == 'https://github.com' && github.token || '' }}
-          go-version: '1.17'
-          check-latest: true
-          cache-dependency-path: |
-             subdir/go.sum
-             tools/go.sum
-    # cache-dependency-path: "**/*.sum"
-
-      - run: go run hello.go
-        
+          node-version: 18
+      - run: npm ci
+      - run: npm test
